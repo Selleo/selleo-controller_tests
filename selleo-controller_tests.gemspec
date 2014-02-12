@@ -9,8 +9,8 @@ Gem::Specification.new do |s|
   s.authors       = ["stevo"]
   s.email         = ["blazejek@gmail.com"]
   s.homepage      = "https://github.com//selleo-controller_tests"
-  s.summary       = "TODO: summary"
-  s.description   = "TODO: description"
+  s.summary       = "Shared examples for controller tests"
+  s.description   = "Shared examples for controller tests"
 
   s.files         = `git ls-files app lib`.split("\n")
   s.platform      = Gem::Platform::RUBY

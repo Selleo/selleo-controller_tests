@@ -33,4 +33,10 @@ RSpec.configure do |config|
 
 ### Usage
 
-Todo...
+#### An action redirecting to a specific path
+
+```ruby
+describe '#create' do
+  it_behaves_like 'an action redirecting to', -> { specific_path }
+end
+```

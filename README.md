@@ -45,7 +45,7 @@ end
 
 ```ruby
 describe '#create' do
-  it_behaves_like 'an action which redirects to :back'
+  it_behaves_like 'an action redirecting to back'
 end
 ```
 

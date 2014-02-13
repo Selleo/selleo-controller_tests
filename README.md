@@ -40,3 +40,11 @@ describe '#create' do
   it_behaves_like 'an action redirecting to', -> { specific_path }
 end
 ```
+
+#### An action redirecting to back
+
+```ruby
+describe '#create' do
+  it_behaves_like 'an action which redirects to :back'
+end
+```

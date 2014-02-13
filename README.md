@@ -48,3 +48,37 @@ describe '#create' do
   it_behaves_like 'an action which redirects to :back'
 end
 ```
+
+#### An action rendering view
+
+##### Basic usage:
+
+```ruby
+describe '#show' do
+  it_behaves_like 'an action rendering view'
+end
+```
+
+It checks if the action rendered view which is specified in the describe block.
+
+##### For a nested example:
+
+```ruby
+describe '#show' do
+  context 'inside a nested block' do
+    it_behaves_like 'an action rendering view'
+  end
+end
+```
+
+##### With a custom view:
+
+```ruby
+describe '#show' do
+  it_behaves_like 'an action rendering view' do
+    let(:view) { 'custom_view' }
+  end
+end
+```
+
+By overriding the view variable, you can specify a view, which is rendered in the action.

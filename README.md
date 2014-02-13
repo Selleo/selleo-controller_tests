@@ -33,6 +33,15 @@ RSpec.configure do |config|
 
 ### Usage
 
+**Notice**: All shared examples suppose, you have defined the `call_request` block, in which you call the action.
+For instance:
+
+```ruby
+describe '#show' do
+  let(:call_request) { get :show, id: 123 }
+end
+```
+
 #### An action redirecting to a specific path
 
 ```ruby

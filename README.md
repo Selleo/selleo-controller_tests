@@ -91,3 +91,69 @@ end
 ```
 
 By overriding the view variable, you can specify a view, which is rendered in the action.
+
+#### An action creating object
+
+This shared examples allows you to check, if the request has created a new object.
+It requires to set the 'attributes' let block, with new attributes for the object.
+
+```ruby
+describe '#create' do
+  let(:attributes) { attributes_for(:person) }
+  let(:call_request) { post :create, person: attributes }
+
+  it_behaves_like 'an action creating object', [:name, :age]
+end
+```
+
+A class of an object is evaluated from the described class name, e.g.
+if the described class is: `UsersController`, the created object has class `User`.
+If the object's class is different, you can override it:
+
+```ruby
+describe '#create' do
+  let(:attributes) { attributes_for(:person) }
+  let(:call_request) { post :create, person: attributes }
+
+  it_behaves_like 'an action creating object', [:name, :age] do
+    let(:model_class) { Admin }
+  end
+end
+```
+
+Also, sometimes it's necessary to specify the new attributes:
+
+```ruby
+describe '#create' do
+  let(:attributes) { attributes_for(:person) }
+  let(:call_request) { post :create, person: attributes }
+
+  it_behaves_like 'an action creating object', [:name, :age] do
+    let(:new_attributes) { {admin?: true} }
+  end
+end
+```
+
+When you find that the object should be created, but you don't want to specify the fields you can easily omit them:
+
+```ruby
+describe '#create' do
+  let(:attributes) { attributes_for(:person) }
+  let(:call_request) { post :create, person: attributes }
+
+  it_behaves_like 'an action creating object'
+end
+```
+
+Sometimes, when for example you have roles in your system, you can specify, that the action creating object should fail,
+not to create a new object. This usage will only check if the object has been not created. There is no need for passing fields of the object.
+You can specify it in this way:
+
+```ruby
+describe '#create' do
+  let(:attributes) { attributes_for(:person) }
+  let(:call_request) { post :create, person: attributes }
+
+  it_behaves_like 'an action creating object', expect_failure: true
+end
+```

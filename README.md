@@ -218,3 +218,58 @@ describe '#update' do
   it_behaves_like 'an action updating object', [:name, :age], expect_failure: true
 end
 ```
+
+#### An action destroying object
+
+This shared examples allows you to check, if the request has destroyed an existing object.
+It evaluates a name of object which should be destroyed from the described class name.
+
+```ruby
+describe '#destroy' do
+  let!(:person) { create(:person) }
+  let(:call_request) { delete :destroy, id: person.id }
+
+  it_behaves_like 'an action destroying object'
+end
+```
+
+When you want to specify a name of object which should be destroyed you can do it in two ways.
+Firstly, by specifying the object:
+
+```ruby
+describe '#destroy' do
+  let!(:person) { create(:person) }
+  let!(:admin) { create(:admin) }
+  let(:call_request) { delete :destroy, id: person.id }
+
+  it_behaves_like 'an action destroying object' do
+    let(:object) { admin }
+  end
+end
+```
+
+Secondly, by specifying name of the object which should be destroyed. This way, the shared example looks for an object,
+with given name:
+
+```ruby
+describe '#destroy' do
+  let!(:person) { create(:person) }
+  let!(:admin) { create(:admin) }
+  let(:call_request) { delete :destroy, id: person.id }
+
+  it_behaves_like 'an action destroying object' do
+    let(:object) { :admin }
+  end
+end
+```
+
+When you find that the action should fail - should not destroy the object, you can do it in this way:
+
+```ruby
+describe '#destroy' do
+  let!(:person) { create(:person) }
+  let(:call_request) { delete :destroy, id: person.id }
+
+  it_behaves_like 'an action destroying object', expect_failure: true
+end
+```

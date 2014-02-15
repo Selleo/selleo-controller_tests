@@ -94,7 +94,7 @@ By overriding the view variable, you can specify a view, which is rendered in th
 
 #### An action creating object
 
-This shared examples allows you to check, if the request has created a new object.
+These shared examples allows you to check, if the request has created a new object.
 It requires to set the 'attributes' let block, with new attributes for the object.
 
 ```ruby
@@ -160,7 +160,7 @@ end
 
 #### An action updating object
 
-This shared examples allows you to check, if the request has updated an existing object.
+These shared examples allows you to check, if the request has updated an existing object.
 It requires to set the 'attributes' let block, with new attributes for the object.
 Also, it requires that the attributes will change, so the factory should use sequences for generating different values each time.
 
@@ -221,7 +221,7 @@ end
 
 #### An action destroying object
 
-This shared examples allows you to check, if the request has destroyed an existing object.
+These shared examples allows you to check, if the request has destroyed an existing object.
 It evaluates a name of object which should be destroyed from the described class name.
 
 ```ruby

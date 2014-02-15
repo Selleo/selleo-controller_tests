@@ -157,3 +157,64 @@ describe '#create' do
   it_behaves_like 'an action creating object', expect_failure: true
 end
 ```
+
+#### An action updating object
+
+This shared examples allows you to check, if the request has updated an existing object.
+It requires to set the 'attributes' let block, with new attributes for the object.
+Also, it requires that the attributes will change, so the factory should use sequences for generating different values each time.
+
+```ruby
+describe '#update' do
+  let!(:person) { create(:person) }
+  let(:attributes) { attributes_for(:person) }
+  let(:call_request) { patch :update, id: person.id, person: attributes }
+
+  it_behaves_like 'an action updating object', [:name, :age]
+end
+```
+
+A name of updated model is evaluated from the described class' name, e.g.
+If the described class is: `UsersController`, the model's name is: 'user'.
+If the object's class is different, you can override it:
+
+```ruby
+describe '#update' do
+  let!(:person) { create(:person) }
+  let(:attributes) { attributes_for(:person) }
+  let(:call_request) { patch :update, id: person.id, person: attributes }
+
+  it_behaves_like 'an action updating object', [:name, :age] do
+    let(:model_name) { :admin }
+  end
+end
+```
+
+Also, sometimes it's necessary to specify the new attributes:
+
+```ruby
+describe '#update' do
+  let!(:person) { create(:person) }
+  let(:attributes) { attributes_for(:person) }
+  let(:call_request) { patch :update, id: person.id, person: attributes }
+
+  it_behaves_like 'an action updating object', [:name, :age] do
+    let(:new_attributes) { {admin: true} }
+  end
+end
+```
+
+Sometimes, when for example you have roles in your system, you can specify,
+that the action updating object should fail - not to update the existing object.
+This usage will check if specified attributes have not changed after calling request.
+You can specify it in this way:
+
+```ruby
+describe '#update' do
+  let!(:person) { create(:person) }
+  let(:attributes) { attributes_for(:person) }
+  let(:call_request) { patch :update, id: person.id, person: attributes }
+
+  it_behaves_like 'an action updating object', [:name, :age], expect_failure: true
+end
+```

@@ -273,3 +273,37 @@ describe '#destroy' do
   it_behaves_like 'an action destroying object', expect_failure: true
 end
 ```
+
+#### Action handled with service object
+
+These shared examples specify if the object should be handled with a service object.
+
+It checks if the service object has been initialized and saved in the proper way.
+The service object must respond to the `save` method.
+
+By default it expects the param for the `initialize` method of the service object is an object which has a class
+named by the service object, e.g. a service with class `PersonCreator` expects an object of the `Person` class.
+
+```ruby
+describe '#create' do
+  let(:attributes) { attributes_for(:person) }
+  let(:call_request) { post :create, person: attributes }
+  let!(:schedule) { create(:schedule) }
+
+  it_behaves_like 'action handled with service object', PersonCreator
+end
+```
+
+When you want to use custom params for the `initialize` method of the service object:
+
+```ruby
+describe '#create' do
+  let(:attributes) { attributes_for(:person) }
+  let(:call_request) { post :create, person: attributes }
+  let!(:schedule) { create(:schedule) }
+
+  it_behaves_like 'action handled with service object', PersonCreator do
+    let(:params) { [kind_of(Admin), admin: true] }
+  end
+end
+```

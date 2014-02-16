@@ -303,7 +303,7 @@ describe '#create' do
   let!(:schedule) { create(:schedule) }
 
   it_behaves_like 'action handled with service object', PersonCreator do
-    let(:params) { [kind_of(Admin), admin: true] }
+    let(:parameters) { [kind_of(Admin), admin: true] }
   end
 end
 ```

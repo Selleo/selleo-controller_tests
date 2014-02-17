@@ -4,4 +4,6 @@ require 'selleo-controller_tests/support/shared_examples/controllers/action_crea
 require 'selleo-controller_tests/support/shared_examples/controllers/action_destroying_object'
 require 'selleo-controller_tests/support/shared_examples/controllers/action_updating_object'
 require 'selleo-controller_tests/support/shared_examples/controllers/handled_with_service_object'
-
+require 'selleo-controller_tests/support/shared_examples/controllers/action_redirecting_to'
+require 'selleo-controller_tests/support/shared_examples/controllers/action_redirecting_to_back'
+require 'selleo-controller_tests/support/shared_examples/controllers/action_rendering_view'

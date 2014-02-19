@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.version       = Selleo::ControllerTests::VERSION
   s.authors       = ["stevo"]
   s.email         = ["blazejek@gmail.com"]
-  s.homepage      = "https://github.com//selleo-controller_tests"
+  s.homepage      = "https://github.com/Selleo/selleo-controller_tests"
   s.summary       = "Shared examples for controller tests"
   s.description   = "Shared examples for controller tests"
 

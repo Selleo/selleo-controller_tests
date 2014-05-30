@@ -7,7 +7,7 @@ shared_examples_for 'an action creating object' do |*args|
   let(:new_attributes) { attributes }
 
   if opts[:expect_failure]
-    it { expect { call_request }.to_not change { model_class.count }.by(1) }
+    it { expect { call_request }.not_to change { model_class.count } }
   else
     it { expect { call_request }.to change { model_class.count }.by(1) }
   end

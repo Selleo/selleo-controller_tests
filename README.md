@@ -15,9 +15,9 @@ then `bundle`
 
 ### Configuration
 
-```ruby
-# spec/spec_helper.rb
+**Notice** For rspec-rails version 2.x put this config to **spec/spec_helper.rb**, for 3.x to: **spec/rails_helper.rb**
 
+```ruby
 #...
 require 'selleo_controller_tests'
 #...

@@ -11,6 +11,7 @@ Gem::Specification.new do |s|
   s.homepage      = "https://github.com/Selleo/selleo-controller_tests"
   s.summary       = "Shared examples for controller tests"
   s.description   = "Shared examples for controller tests"
+  s.license       = "MIT"
 
   s.files         = `git ls-files app lib`.split("\n")
   s.platform      = Gem::Platform::RUBY
